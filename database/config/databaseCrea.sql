@@ -15,13 +15,13 @@ create table alumno(noCont varchar(4) not null,
             nombre varchar(30),
 					  genero varchar(1),
 					  fechaNac date,
-            email varchar(30)
+            email varchar(30),
 					constraint alumnoPK primary key (noCont),
-					Constraint alumnoCK1 check (genero = 'F' or genero = 'M'));
+					constraint alumnoCK1 check (genero = 'F' or genero = 'M'));
 
 create table maestro(cveMae varchar(4) not null ,
                     nombre varchar(30),
-                    email varchar(30)
+                    email varchar(30),
           constraint maestroPK primary key (cveMae)
 );
 
@@ -31,12 +31,12 @@ create table grupo(cveMat varchar(4) not null,
                    horario varchar(5),
                    salon varchar(3),
                    constraint grupoPK primary key (cveMat,noGpo),
-                   Constraint grupoFK1 foreign key (cveMat) references materia(cveMat),
-				   Constraint grupoFK2 foreign key (cveMae) references maestro(cveMae));
+                   constraint grupoFK1 foreign key (cveMat) references materia(cveMat),
+				   constraint grupoFK2 foreign key (cveMae) references maestro(cveMae));
 
 create table lista(cveMat varchar(4) not null,
                    noGpo int not null,
                    noCont varchar(4) not null,
                    constraint listaPK primary key (cveMat,noGpo,noCont),
-                   Constraint listaFK1 foreign key (cveMat,noGpo) references grupo(cveMat,noGpo),
-                   Constraint listaFK2 foreign key (noCont) references alumno(noCont));
+                   constraint listaFK1 foreign key (cveMat,noGpo) references grupo(cveMat,noGpo),
+                   constraint listaFK2 foreign key (noCont) references alumno(noCont));
